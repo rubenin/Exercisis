@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Setmana11;
 
 import java.util.Scanner;
@@ -10,279 +6,166 @@ import java.util.Scanner;
  *
  * @author ruben
  */
-public class Projecte3 {
+public class Projecte3{
 
-    public static final int MINIM_DNI = 1;
-    public static final int MAXIM_DNI = 999999999;
-    public static final int MINIM_FAMILIA = 1;
-    public static final int MAXIM_FAMILIA = 4;
-    public static final int FAMILIA_INFORMATICA = 1;
-    public static final int FAMILIA_ADMINISTRACIO = 2;
-    public static final int MINIM_CICLE = 100;
-    public static final int MAXIM_CICLE = 400;
-    public static final int SMX = 111;
-    public static final int DAM = 121;
-    public static final int ASX = 122;
-    public static final int DAW = 123;
-    public static final String SMX_NOM = "Sistemes microinformàtics i xarxes";
-    public static final String DAM_NOM = "Desenv. d'aplicacions multiplataforma";
-    public static final String ASX_NOM = "Administració de sistemes informàtics";
-    public static final String DAW_NOM = "Desenvolupament d'aplicacions web";
-    public static final int GAD = 211;
-    public static final int AFI = 221;
-    public static final int ADI = 222;
-    public static final String GAD_NOM = "Gestió administrativa";
-    public static final String AFI_NOM = "Administració i finances";
-    public static final String ADI_NOM = "Assistència a la direcció";
-    public static final int MINIM_NOTA = 0;
-    public static final int MAXIM_NOTA = 10;
+    //Definim totes les constants
+    public static final int MINIM_ID = 111;
+    public static final int MAXIM_ID = 999;
+    public static final int MINIM_EDAT = 14;
+    public static final int MAXIM_EDAT = 120;
+    public static final int MINIM_TIPUS = 0;
+    public static final int MAXIM_TIPUS = 3;
+    public static final int MINIM_IMPORT = 0;
+    public static final int MAXIM_IMPORT = 1000;
+    public static final int MINIM_TELEFON = 111111111;
+    public static final int MAXIM_TELEFON = 999999999;
+    public static final int LLI = 0;
+    public static final int PEN = 1;
+    public static final int JOV = 2;
+    public static final int SOC = 3;
+    public static final String LLI_NOM = "Venta LLiure";
+    public static final String PEN_NOM = "Pensionista";
+    public static final String JOV_NOM = "Carnet Jove";
+    public static final String SOC_NOM = "Soci";
     public static final int MAX_INTENTS = 3;
 
-    public static final int MAX_ALUMNES = 4;
-
+    @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
-
-        /*Definim tipus de dades
-        En el cas dels arrays: declarem i reservem espai de memòria per
-        emmagatzemar dades*/
-        int[] dni = new int[MAX_ALUMNES];
-        int[] familia = new int[MAX_ALUMNES];
-        int[] cicle = new int[MAX_ALUMNES];
-        int intents = 0;
+        //Definim variables
+        int id = 0;
+        int edat = 0;
+        int tipus = 0;
+        int importe = 0;
+        int telefon = 0;
         int i = 0;
+        int clientsEntrats = 0;
         int seguir = 0;
-        float fcanvi;
-        int icanvi;
-        float[] nota = new float[MAX_ALUMNES];
-        String nomCicle = "";
+        String tipusVenda = "";
         Scanner scan = new Scanner(System.in);
         boolean dadaCorrecta = true, introduirMes;
-        do {
-            do {
-                introduirMes = false; //per defecte, no volem introduir més
-                //llegim i mirem si és correcta
-                System.out.print("Entra el DNI: ");
 
+        do {
+            introduirMes = false;
+            do {
+                //Comencem demanant l'id
+                System.out.print("Entra el ID: ");
                 dadaCorrecta = scan.hasNextInt(); //per analitzar tipus de dada
-                if (dadaCorrecta) {//si és un número sencer
-                    dni[i] = scan.nextInt();
+                if (dadaCorrecta) { //si es un número sencer
+                    //LLegim dades
+                    id = scan.nextInt();
                     //Avaluem si és válida
-                    if ((dni[i] < MINIM_DNI) || (dni[i] > MAXIM_DNI)) {
+                    if ((id < MINIM_ID) || (id > MAXIM_ID)) {
                         dadaCorrecta = false;
                     }
                 }
-                intents++;
-            } while ((!dadaCorrecta) && (intents < MAX_INTENTS));
+                i++;
+            } while ((!dadaCorrecta) && (i < MAX_INTENTS));
 
             if (dadaCorrecta) {
-                intents = 0; // Per a cada dada inicialitzem el comptador d'intents a 0
-                //Entrem cicle
-                System.out.print("\n\tinformática i comunicacions (1) \n"
-                        + "\tadministració i gestió (2)\n"
-                        + "\telectricitat i electrónica (3) \n"
-                        + "\tsanitat (4) \n"
-                        + "\tserveis socioculturals i a la comunitat (5) \n");
+                i = 0;//Inicialitzem comptador
 
                 do {
-                    System.out.print("\nEntra la familia professional: ");
+                    //Pedim edat, llegim i mirem si és correcta
+                    System.out.print("Entra la edat: ");
+                    dadaCorrecta = scan.hasNextInt();
+
+                    if (dadaCorrecta) {
+                        //Llegim dades
+                        edat = scan.nextInt();
+                        //Avaluem si és válida
+                        if ((edat < MINIM_EDAT) || (edat > MAXIM_EDAT)) {
+                            dadaCorrecta = false;
+                        }
+                    }
+                    i++;
+                } while ((!dadaCorrecta) && (i < MAX_INTENTS));
+            }
+            if (dadaCorrecta) {
+                i = 0; // Inicialitzem el comptador
+                do {
+
+                    //Entrem tipus de venda
+                    System.out.print("\tVenda lliure (0)\n"
+                            + "\tPensionista (1)\n"
+                            + "\tCarnet jove (2)\n"
+                            + "\tSoci (3)\n\n"
+                            + "Entra el tipus de venda:");
                     dadaCorrecta = scan.hasNextInt();
                     if (dadaCorrecta) {
-                        familia[i] = scan.nextInt();
-                        if ((familia[i] < MINIM_FAMILIA) || (familia[i] > MAXIM_FAMILIA)) {
+                        tipus = scan.nextInt();
+                        if ((tipus < MINIM_TIPUS) || (tipus > MAXIM_TIPUS)) {
                             dadaCorrecta = false;
-                        } else {//Si arribem aquí es que la dada familia és correcta
-                            intents = 0; //Inicialitzem el comptador d'intents a 0
-                            switch (familia[i]) {
-                                case FAMILIA_INFORMATICA:
-                                    System.out.print("\n\tSist. m. i xarxes (111) \n"
-                                            + "\tDesenv. D'ap. multiplataforma (121) \n"
-                                            + "\tAdm. de sistemes informátics (122) \n"
-                                            + "\tDesenv. d'aplicacions web (123)  \n");
-                                    break;
-                                case FAMILIA_ADMINISTRACIO:
-                                    System.out.print("\n\tGestió adm. (211) \n"
-                                            + "\tAdministració i finances (221) \n"
-                                            + "\tAssistència a la direcció (222) \n");
-                                    break;
-                                //Resta de families per definir
-                            }
-                            do {
-                                System.out.print("\nEntra el cicle: ");
-                                dadaCorrecta = scan.hasNextInt();
-                                if (dadaCorrecta) {
-                                    cicle[i] = scan.nextInt();
-                                    switch (familia[i]) {
-                                        case FAMILIA_INFORMATICA:
-                                            switch (cicle[i]) {
-                                                case SMX:
-                                                case DAM:
-                                                case ASX:
-                                                case DAW:
-                                                    break; //si Codi correcte no fem res
-                                                default:
-                                                    dadaCorrecta = false;
-                                            }
-                                            break;
-                                        case FAMILIA_ADMINISTRACIO:
-                                            switch (cicle[i]) {
-                                                case GAD:
-                                                case AFI:
-                                                case ADI:
-                                                    break; //Si codi correcte no fem res
-                                                default:
-                                                    dadaCorrecta = false;
-                                            }
-                                            break;
-                                        //Resta de families per definir
-                                    }
-                                }
-                                intents++;
-                            } while ((!dadaCorrecta) && (intents < MAX_INTENTS));
                         }
                     }
-                    intents++;
-                } while ((!dadaCorrecta) && (intents < MAX_INTENTS));
+                    i++;
+                } while ((!dadaCorrecta) && (i < MAX_INTENTS));
             }
-            if (dadaCorrecta) {//si fins al momemt tot correcte, anem a llegir nota
-                intents = 0;
+            if (dadaCorrecta) {//Si fins al moment tot es correcte, pedim l'import
+                i = 0;
                 do {
-                    System.out.print("Entra la nota mitjana: ");
-                    dadaCorrecta = scan.hasNextFloat();//per analitzar tipus de dada 
-                    if (dadaCorrecta) { // si és un número real 
-                        nota[i] = scan.nextFloat();
-                        if ((nota[i] < MINIM_NOTA) || (nota[i] > MAXIM_NOTA)) {
+                    System.out.print("Entra l'import: ");
+                    dadaCorrecta = scan.hasNextInt();
+                    if (dadaCorrecta) {//si es un número real  
+                        importe = scan.nextInt();
+                        if ((importe < MINIM_IMPORT) || (importe > MAXIM_IMPORT)) {
                             dadaCorrecta = false;
                         }
-                    } else {
-                        scan.next(); //buidem el buffer d'entrada per si entren
-                        // incorrectament un valor amb decimals.
                     }
-                    intents++;
-                } while ((!dadaCorrecta) && (intents < MAX_INTENTS));
+                    i++;
+                } while ((!dadaCorrecta) && (i < MAX_INTENTS));
             }
             if (dadaCorrecta) {
-                i++; //index. També ens indica el número alumnes
-            } else {
-                System.out.println("dades incorrectes");
-            }
-
-            if (i < MAX_ALUMNES) {
-                //Avaluem si vol introduir més alumnes
-                System.out.println("es vol introduir mes alumnes?");
-                dadaCorrecta = scan.hasNextInt();
-                if (dadaCorrecta) { // si és un número sencer 
-                    seguir = scan.nextInt();
-                    if (seguir == 1) {
-                        introduirMes = true;
-                    }
-                } else {
-                    System.out.println("dada incorrecta");
-                }
-            }
-        } while ((introduirMes) && (i < MAX_ALUMNES));
-        //Mostrem dades introduides des de 0 fins a i. (i conté el número
-        //d'alumnes entrats.
-        System.out.println("S'han inscrit " + i + " nous alumnes");
-        System.out.println("DNI nota Cicle");
-        for (int j = 0; j < i; j++) {
-            //Obtinc nom del cicle
-            switch (cicle[j]) {
-                case SMX:
-                    nomCicle = SMX_NOM;
-                    break;
-                case DAM:
-                    nomCicle = DAM_NOM;
-                    break;
-                case ASX:
-                    nomCicle = ASX_NOM;
-                    break;
-                case DAW:
-                    nomCicle = DAW_NOM;
-                    break;
-                case GAD:
-                    nomCicle = GAD_NOM;
-                    break;
-                case AFI:
-                    nomCicle = AFI_NOM;
-                    break;
-                case ADI:
-                    nomCicle = ADI_NOM;
-                    break;
-                //Resta de families per definir
-            }
-            System.out.println(dni[j] + " " + nota[j] + " " + nomCicle);
-        }
-
-        //Endrecem
-        //Avaluem si es vol endreçar 
-        System.out.println("vols mostrar els alumnes endreçats per nota?");
-        dadaCorrecta = scan.hasNextInt();
-        if (dadaCorrecta) { // si és un número sencer 
-            seguir = scan.nextInt();
-            if (seguir == 1) { //si volem endreçar
-                //Ordenació ----------------------------------------
-                for (int k = 0; k < i - 1; k++) {
-                    //Bucle intern.
-                    //Se cerca entre la resta de posicions quin és el valor més baix.
-                    for (int j = k + 1; j < i; j++) {
-                        //La posició tractada té un valor més alt que el de la cerca.
-                        // Els intercanviem.
-                        if (nota[k] > nota[j]) {
-                            //Per intercanviar valors cal una variable auxiliar.
-                            fcanvi = nota[k];
-                            nota[k] = nota[j];
-                            nota[j] = fcanvi;
-                            //intercanviem resta de valors de la mateixa manera
-                            //DNI
-                            icanvi = dni[k];
-                            dni[k] = dni[j];
-                            dni[j] = icanvi;
-                            //familia
-                            icanvi = familia[k];
-                            familia[k] = familia[j];
-                            familia[j] = icanvi;
-                            //cicle
-                            icanvi = cicle[k];
-                            cicle[k] = cicle[j];
-                            cicle[j] = icanvi;
+                i = 0;
+                //Llegim el telefon
+                do {
+                    System.out.print("Entra el telefon: ");
+                    dadaCorrecta = scan.hasNextInt();
+                    if (dadaCorrecta) {
+                        telefon = scan.nextInt();
+                        if ((telefon < MINIM_TELEFON) || (telefon > MAXIM_TELEFON)) {
+                            dadaCorrecta = false;
                         }
                     }
-                }
-                //Fi ordenació -------------------------------------
-                //Mostrem ordenats ---------------------------------
-                System.out.println("DNI nota Cicle");
-                for (int j = 0; j < i; j++) {
-                    //Obtinc nom del cicle
-                    switch (cicle[j]) {
-                        case SMX:
-                            nomCicle = SMX_NOM;
-                            break;
-                        case DAM:
-                            nomCicle = DAM_NOM;
-                            break;
-                        case ASX:
-                            nomCicle = ASX_NOM;
-                            break;
-                        case DAW:
-                            nomCicle = DAW_NOM;
-                            break;
-                        case GAD:
-                            nomCicle = GAD_NOM;
-                            break;
-                        case AFI:
-                            nomCicle = AFI_NOM;
-                            break;
-                        case ADI:
-                            nomCicle = ADI_NOM;
-                            break;
-                        //Resta de families per definir
-                    }
-                    System.out.println(dni[j] + " " + nota[j] + " " + nomCicle);
-                }
-                //Fi mostrar ---------------------------------------
+                    i++;
+                } while ((!dadaCorrecta) && (i < MAX_INTENTS));
             }
-        } else {
-            System.out.println("dada incorrecta");
-        }
+            if (dadaCorrecta) {
+                //Obtin tipus de venda
+                switch (tipus) {
+                    case LLI:
+                        tipusVenda = LLI_NOM;
+                        break;
+                    case PEN:
+                        tipusVenda = PEN_NOM;
+                        break;
+                    case JOV:
+                        tipusVenda = JOV_NOM;
+                        break;
+                    case SOC:
+                        tipusVenda = SOC_NOM;
+                        break;
+                }
+                //Mostrem el resultat per pantalla
+                System.out.println("ID  ||  Edat    ||  Tipus de venda  ||  Import  ||  Telefon");
+                System.out.println(id + " ||  " + edat + "      ||  " + tipusVenda + "     ||  " + importe + "      ||  " + telefon);
+                clientsEntrats++;
+
+            } else {//En cas de que hagi errors, donará error de dades
+                System.out.println("Error de dades");
+            }
+            //Avaluem si vol introduir més clients
+            System.out.println("es vol introduir més clients?");
+            dadaCorrecta = scan.hasNextInt();
+            if (dadaCorrecta) {
+                seguir = scan.nextInt();
+                if (seguir == 1) {
+                    introduirMes = true;
+                }
+            } else {
+                System.out.println("Dada incorrecta");
+            }
+        } while (introduirMes);
+        //Mostrem dades introduides
+        System.out.println("S'han inscrit " + clientsEntrats + " nous clients");
     }
 }
