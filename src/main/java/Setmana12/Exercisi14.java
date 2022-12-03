@@ -10,18 +10,19 @@ package Setmana12;
  */
 public class Exercisi14 {
 
-    public static final int NUM_CAMPS = 4; //4 Camps: dorsal, sexe, edat i temps
-    public static final int HOME = 0;
-    public static final int DONA = 1;
+    //Definimos constantes
+    public static final int CAMPOS = 4;
+    public static final int HOMBRES = 0;
+    public static final int MUJERES = 1;
 
     public static void main(String[] args) {
 
-        //Definim tipus de dades
-        int minTempsHome = 0;
-        int minTempsDona = 0;
-        int posGuanyador = 0, posGuanyadora = 0;
+        //Inicializamos variables
+        int tiempoMinimoHombres = 0;
+        int tiempoMinimoMujeres = 0;
+        int ganador = 0, ganadora = 0;
 
-        int[][] corredors = {
+        int[][] participantes = {
             {3457, 1, 51, 52},
             {3467, 1, 32, 41},
             {3568, 0, 14, 57},
@@ -32,37 +33,35 @@ public class Exercisi14 {
             {3574, 0, 30, 42},
             {3575, 1, 24, 77},
             {3576, 0, 57, 48}
-        };//Conté dorsal, sexe, edat i temps fet) 
+        };
 
         //Mostrem llistat
-        System.out.println("Llistat de tots els corredors entrats: ");
-        for (int i = 0; i < corredors.length; i++) {
-            if (corredors[i][1] == HOME) {
-                if (minTempsHome == 0) { // per la primera vegada, assignem el 
-                    //primer valor de temps d`home
-                    minTempsHome = corredors[i][3];
-                    posGuanyador = i;
+        System.out.println("Listado de participantes: ");
+        for (int i = 0; i < participantes.length; i++) {
+            if (participantes[i][1] == HOMBRES) {
+                if (tiempoMinimoHombres == 0) {
+                    tiempoMinimoHombres = participantes[i][3];
+                    ganador = i;
                 } else {
-                    if (corredors[i][3] < minTempsHome) {
-                        minTempsHome = corredors[i][3];
-                        posGuanyador = i;
+                    if (participantes[i][3] < tiempoMinimoHombres) {
+                        tiempoMinimoHombres = participantes[i][3];
+                        ganador = i;
                     }
                 }
-            } else { // Per a corredores dones
-                if (minTempsDona == 0) {//per la primera vegada, 
-                    //assignem el primer valor de temps d`home
-                    minTempsDona = corredors[i][3];
-                    posGuanyadora = i;
+            } else { // comenzamos con corredoras
+                if (tiempoMinimoMujeres == 0) {
+                    tiempoMinimoMujeres = participantes[i][3];
+                    ganadora = i;
                 } else {
-                    if (corredors[i][3] < minTempsDona) {
-                        minTempsDona = corredors[i][3];
-                        posGuanyadora = i;
+                    if (participantes[i][3] < tiempoMinimoMujeres) {
+                        tiempoMinimoMujeres = participantes[i][3];
+                        ganadora = i;
                     }
                 }
             }
 
         }
-        System.out.println("Guanyador: " + corredors[posGuanyador][0] + "" + corredors[posGuanyador][1] + "" + corredors[posGuanyador][2] + " " + corredors[posGuanyador][3]);
-        System.out.println("Guanyadora: " + corredors[posGuanyadora][0] + " " + corredors[posGuanyadora][1] + " " + corredors[posGuanyadora][2] + " " + corredors[posGuanyadora][3]);
+        System.out.println("Ganador: " + participantes[ganador][0] + "" + participantes[ganador][1] + "" + participantes[ganador][2] + " " + participantes[ganador][3]);
+        System.out.println("Ganadora: " + participantes[ganadora][0] + " " + participantes[ganadora][1] + " " + participantes[ganadora][2] + " " + participantes[ganadora][3]);
     }
 }
