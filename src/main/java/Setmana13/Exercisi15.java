@@ -19,29 +19,24 @@ public class Exercisi15 {
     public static void main(String[] args) {
 
         Scanner lector = new Scanner(System.in);
-        String passwd = "";
-        String[] dadesUsuari;
+        String password = "";
+        String[] datosUsuario;
         Random rand = new Random();
 
-        System.out.println("Escriu els teus nom i cognoms i pitja retorn: ");
+        System.out.println("Introduce nombre y apellidos: ");
         String text = lector.nextLine();
-        //Create an array from data entered.
-        //Creem un array amb nom i cognom.
-        dadesUsuari = text.split(" ");
 
-        //Build first part of the passwd.
-        //Construeix la primera part de la contrasenya.
+        datosUsuario = text.split(" ");
+
         for (int i = 0; i < HALF_LEN / 2; i++) {
-            passwd += (dadesUsuari[0].charAt(i));
-            passwd += (dadesUsuari[1].charAt(i));
+            password += (datosUsuario[0].charAt(i));
+            password += (datosUsuario[1].charAt(i));
         }
 
-        //Add random numbers.
-        //Afegeix 4 digits més: números generats aleatoriament.
-        for (int  = 0; i < HALF_LEN;i++){
-            passwd += rand.nextInt(MAX_VAL);
+        for (int i = 0; i < HALF_LEN; i++) {
+            password += rand.nextInt(MAX_VAL);
         }
-        System.out.println("Contrasenya és: " + passwd);
+        System.out.println("El password es: " + password);
     }
 
 }
